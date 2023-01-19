@@ -45,3 +45,28 @@ class ValidatorInputFormatter implements TextInputFormatter {
     return newValue;
   }
 }
+
+class EmailEditingRegexValidator extends RegexValidator {
+  EmailEditingRegexValidator() : super(regexSource: '^(|\\S)+\$');
+}
+
+class EmailSubmitRegexValidator extends RegexValidator {
+  EmailSubmitRegexValidator() : super(regexSource: '^\\S+@\\S+\\.\\S+\$');
+}
+
+class NonEmptyStringValidator extends StringValidator {
+  @override
+  bool isValid(String value) {
+    return value.isNotEmpty;
+  }
+}
+
+class MinLengthStringValidator extends StringValidator {
+  MinLengthStringValidator(this.minLength);
+  final int minLength;
+
+  @override
+  bool isValid(String value) {
+    return value.length >= minLength;
+  }
+}

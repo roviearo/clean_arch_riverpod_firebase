@@ -5,7 +5,7 @@ class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
     Key? key,
     required this.text,
-    required this.isLoading,
+    this.isLoading = false,
     this.onPressed,
   }) : super(key: key);
 
