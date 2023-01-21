@@ -4,6 +4,7 @@ import 'package:clean_arch_riverpod_firebase/src/common_widgets/primary_button.d
 import 'package:clean_arch_riverpod_firebase/src/constants/keys.dart';
 import 'package:clean_arch_riverpod_firebase/src/constants/strings.dart';
 import 'package:clean_arch_riverpod_firebase/src/features/authentication/presentation/sign_in/sign_in_screen_controller.dart';
+import 'package:clean_arch_riverpod_firebase/src/routing/app_router.dart';
 import 'package:clean_arch_riverpod_firebase/src/utils/async_valu_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -54,7 +55,16 @@ class SignInScreen extends ConsumerWidget {
                     text: Strings.signInWithEamilAndPassword,
                     onPressed: state.isLoading
                         ? null
-                        : () => context.goNamed(AppRoute),
+                        : () => context.goNamed(AppRoute.emailPassword.name),
+                  ),
+                  PrimaryButton(
+                    key: anonymousButtonKey,
+                    text: Strings.goAnonymous,
+                    onPressed: state.isLoading
+                        ? null
+                        : () => ref
+                            .read(signInScreenControllerProvider.notifier)
+                            .signInAnonymously(),
                   ),
                 ],
               ),
